@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Tweet
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Welcome To Django Project</h1>
+
+    <div class="card shadow-lg p-4 bg-dark text-white" style="max-width: 600px; margin: auto; border-radius: 10px;">
+        <h2 class="mb-3 text-center">
+            {% if form.instance.pk %}
+                Edit Tweet
+            {% else %}
+                Create Tweet
+            {% endif %}
+        </h2>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label">Tweet Text</label>
+                {{ form.text }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Upload Photo</label>
+                {{ form.photo }}
+            </div>
+
+            <div class="d-grid">
+                <button class="btn btn-warning" type="submit">Submit</button>
+            </div>
+        </form>
+
+        <div class="text-center mt-3">
+            <a href="{% url 'tweet_list' %}" class="text-info">← Back to tweet list</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
